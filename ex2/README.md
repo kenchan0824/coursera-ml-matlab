@@ -7,7 +7,8 @@ List of files
 - submit.m - Submission script that sends your solutions to our servers
 - mapFeature.m - Function to generate polynomial features
 - plotDecisionBoundary.m - Function to plot classifer's decision boundary
-###Exercises
+
+### Exercises
 - plotData.m - Function to plot 2D classifcation data
 - sigmoid.m - Sigmoid Function
 - costFunction.m - Logistic Regression Cost Function
