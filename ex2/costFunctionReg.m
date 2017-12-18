@@ -17,10 +17,17 @@ grad = zeros(size(theta));
 %               Compute the partial derivatives and set grad to the partial
 %               derivatives of the cost w.r.t. each parameter in theta
 
+% hypothesis: 1/(1+e^(-z))
+z = X * theta;
+h = sigmoid(z);
 
+% compute cost
+theta1 = theta(2:end); %theta vector without theta0
+J = -1/m * sum(y .* log(h) + (1-y) .* log(1-h)) + lambda / (2*m) * theta1' * theta1;
 
-
-
+% gradient
+grad = 1/m * X' * (h - y) + lambda / m * theta;
+grad(1) = 1/m * sum(h - y); %overide gradient1 without lambda term 
 
 % =============================================================
 
