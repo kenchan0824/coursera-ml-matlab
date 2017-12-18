@@ -26,12 +26,15 @@ sigma = zeros(1, size(X, 2));
 % Hint: You might find the 'mean' and 'std' functions useful.
 %       
 
+% find mean
+mu = mean(X);
 
+% find stadard deviation
+sigma = std(X);
 
-
-
-
-
+% normalize X by performing element wise operation : x = (x-mu)/sigma
+% mu is auto broadcasted to dimension mxn
+X_norm = (X - mu) ./ sigma;
 
 
 % ============================================================

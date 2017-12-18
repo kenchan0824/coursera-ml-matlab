@@ -17,14 +17,14 @@ for iter = 1:num_iters
     %       of the cost function (computeCostMulti) and gradient here.
     %
 
+	% find hypothesis vector
+	h = (X * theta);
+	
+	% find gradient vector
+	g = X' * (h - y);
 
-
-
-
-
-
-
-
+	% update theta iteratively
+	theta = theta - alpha / m * g;
 
 
     % ============================================================
