@@ -17,11 +17,13 @@ for iter = 1:num_iters
     %       of the cost function (computeCost) and gradient here.
     %
 
-
-
-
-
-
+	% find the gradient vector
+	e = X * theta - y;
+	grad(1, 1) = sum(e);
+	grad(2, 1) = sum(e .* X(:,2));
+	
+	% update theta simultaneously by walking down with learning rate (alpha)
+	theta = theta - alpha / m * grad;
 
     % ============================================================
 
