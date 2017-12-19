@@ -62,23 +62,54 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+% transform y to mxk matrix, Y(t,k) either 0 or 1
+Y = eye(num_labels)(y, :);
 
+% initate variables
+cost = 0;
+a2 = zeros(hidden_layer_size+1, 1);
+a2(1) = 1; % bias unit
+D2 = zeros(size(Theta2));
+D1 = zeros(size(Theta1));
 
+for t=(1:m)  % loop thru each sample instance
 
+	% feedforward
+	a1 = [1, X(t, :)]'; % input layer
+	
+	% 2nd layer activation
+	a2(2:end) = sigmoid(Theta1 * a1); 
+	
+	a3 = sigmoid(Theta2 * a2); % output layer
+	
+	% cost term for sample t, sum all class k
+	yt = Y(t, :)';
+	cost = cost + sum(-yt .* log(a3) - (1-yt) .* log(1-a3));
+	
+	% backprogation
+	% output layer
+	delta3 = a3 - yt; % delta for output layer
+	
+	% 2nd layer
+	delta2 = Theta2' * delta3 .* a2 .* (1-a2);
+	delta2 = delta2(2:end); % remove delta(2)0
+	D2 = D2 + delta3 * a2';
+	
+	% input layer
+	D1 = D1 + delta2 * a1';
+	
+end;
 
+% skip theta(i,0) for regularization
+Theta1_reg = Theta1;
+Theta1_reg(:,1) = zeros(size(Theta1, 1), 1);
+Theta2_reg = Theta2;
+Theta2_reg(:,1) = zeros(size(Theta2, 1), 1);
 
-
-
-
-
-
-
-
-
-
-
-
-
+% output result
+J = 1/m * cost + lambda/(2*m) * (sum(sum(Theta1_reg .^ 2)) + sum(sum(Theta2_reg .^ 2)));
+Theta1_grad = 1/m * D1 + lambda/m*Theta1_reg;
+Theta2_grad = 1/m * D2 + lambda/m*Theta2_reg;
 
 % -------------------------------------------------------------
 
