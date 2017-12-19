@@ -30,10 +30,17 @@ X = [ones(m, 1) X];
 %       for each row.
 %       
 
+% compute the hypothesis for all classes K
+% H should be a mxk matrix, with h(i,j) in the range(0:1)
+H = X * all_theta';
 
+% transform h(i,j) to either 0 or 1
+% output should have only one 1 in each row
+output = ( H == max(H, [], 2) );
 
-
-
+% find prediction
+k = (1:num_labels)';
+p = output * k;
 
 
 % =========================================================================

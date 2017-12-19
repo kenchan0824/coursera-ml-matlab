@@ -49,16 +49,23 @@ X = [ones(m, 1) X];
 %                 initial_theta, options);
 %
 
+% Set Initial theta
+initial_theta = zeros(n + 1, 1);
 
+% Set options for fminunc
+options = optimset('GradObj', 'on', 'MaxIter', 50);
 
+for k = 1:num_labels,
 
+	% convert y to either 0 or 1 for class k
+	ky = (y == k);
 
+	% perform gradient descent for class k to get theta k
+	ktheta = fmincg (@(t)(lrCostFunction(t, X, ky, lambda)), initial_theta, options);	
+	
+	all_theta(k, :) = ktheta';
 
-
-
-
-
-
+end;
 
 % =========================================================================
 
