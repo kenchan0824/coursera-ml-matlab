@@ -23,11 +23,28 @@ sigma = 0.3;
 %        mean(double(predictions ~= yval))
 %
 
+error_min = 1;
 
+for Ct=[0.03, 0.1, 0.3, 1, 3]
+	for sigmat=[0.03, 0.1, 0.3, 1, 3]
+		
+		% train to get model
+		model= svmTrain(X, y, Ct, @(x1, x2) gaussianKernel(x1, x2, sigmat));
 
+		% get prediction from validation set
+		predictions = svmPredict(model, Xval);
 
+		% calculate validation error
+		error = mean(double(predictions ~= yval));
 
+		if (error < error_min)
+			error_min = error;
+			C = Ct;
+			sigma = sigmat;
+		endif
 
+	endfor
+endfor
 
 % =========================================================================
 
