@@ -21,12 +21,22 @@ p = zeros(size(X, 1), 1);
 %       can use max(A, [], 2) to obtain the max for each row.
 %
 
+% initiate 2nd layer activation units and hypothesis outputs 
+A2 = zeros(m, size(Theta1, 1) + 1);
+A2(:, 1) = ones(m, 1);
+H = zeros(m, num_labels);
 
+% add bias unit to input layer
+X = [ones(m, 1) X];
 
+% compute 2nd layer activation values
+A2(:, 2:end) = sigmoid(X * Theta1');
 
-
-
-
+% compute hypothesis outputs
+H = sigmoid(A2 * Theta2');
+output = (H == max(H, [], 2));
+k = (1: num_labels)';
+p = output * k;
 
 
 % =========================================================================
