@@ -18,8 +18,11 @@ Z = zeros(size(X, 1), K);
 %                    projection_k = x' * U(:, k);
 %
 
+% find Ureduce
+Ureduce = U(:, 1:K);
 
-
+% find Z
+Z = X * Ureduce;
 
 % =============================================================
 

@@ -20,11 +20,11 @@ S = zeros(n);
 %       number of examples).
 %
 
+% find convariance matrix
+sigma = (1/m) * X' * X;
 
-
-
-
-
+% find eigenvectors and egenvalues
+[U, S, V] = svd(sigma);
 
 % =========================================================================
 
