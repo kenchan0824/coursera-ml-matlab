@@ -1,7 +1,7 @@
 Course
 ===
 Machine Learning by Standford University (Andrew Ng)
-https://www.coursera.org/learn/machine-learning/home/welcome
+`https://www.coursera.org/learn/machine-learning/home/welcome`
 
 Syllabus
 ===
@@ -30,3 +30,8 @@ Exercises
 - Ex2 - Logistric Regression
 - Ex3 - Multi-class Classifcation and Neural Networks
 - Ex4 - Neural Networks Learning
+- Ex5 - Regularization and Bias vs. Variance
+- Ex6 - Support Vector Machines
+- Ex7 - K-means and Principal Component Analysis
+- Ex8 - Anomaly Detection and Recommender Systems
+
